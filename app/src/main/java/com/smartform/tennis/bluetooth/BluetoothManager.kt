@@ -2,8 +2,13 @@ package com.smartform.tennis.bluetooth
 
 import android.annotation.SuppressLint
 import android.bluetooth.*
+import android.bluetooth.le.ScanCallback
+import android.bluetooth.le.ScanFilter
+import android.bluetooth.le.ScanResult
+import android.bluetooth.le.ScanSettings
 import android.content.Context
 import android.os.Build
+import android.os.ParcelUuid
 import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,9 +39,42 @@ class BluetoothManager(private val context: Context) {
         // 默认的传感器特征 UUID（需要根据硬件修改）
         val DEFAULT_SENSOR_CHARACTERISTIC_UUID: java.util.UUID =
             java.util.UUID.fromString("00002A19-0000-1000-8000-00805F9B34FB")
+
+        // 蓝牙字符描述符配置 (用于启用通知)
+        val CLIENT_CHARACTERISTIC_CONFIG: java.util.UUID =
+            java.util.UUID.fromString("00002902-0000-1000-8000-00805F9B34FB")
+
+        /**
+         * 获取蓝牙适配器
+         */
+        fun getBtAdapter(): BluetoothAdapter? {
+            return BluetoothAdapter.getDefaultAdapter()
+        }
+
+        /**
+         * 检查蓝牙是否可用
+         */
+        fun isBluetoothAvailable(): Boolean {
+            val adapter = getBtAdapter()
+            return adapter?.isEnabled == true
+        }
+
+        /**
+         * 检查是否有蓝牙权限
+         */
+        fun hasBluetoothPermissions(context: Context): Boolean {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val scanPermission = android.Manifest.permission.BLUETOOTH_SCAN
+                val connectPermission = android.Manifest.permission.BLUETOOTH_CONNECT
+                context.checkSelfPermission(scanPermission) == android.content.pm.PackageManager.PERMISSION_GRANTED &&
+                    context.checkSelfPermission(connectPermission) == android.content.pm.PackageManager.PERMISSION_GRANTED
+            } else {
+                true
+            }
+        }
     }
 
-    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getBtAdapter()
+    private val bluetoothAdapter: BluetoothAdapter? = getBtAdapter()
 
     private var bluetoothGatt: BluetoothGatt? = null
     private var notifyCharacteristic: BluetoothGattCharacteristic? = null
@@ -190,7 +228,10 @@ class BluetoothManager(private val context: Context) {
         _scanResults.value = emptyList()
         _connectionState.value = BluetoothState.SCANNING
         val scanner = bluetoothAdapter?.bluetoothLeScanner ?: return
-        scanner.startScan(scanCallback)
+        val settings = ScanSettings.Builder()
+            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+            .build()
+        scanner.startScan(emptyList(), settings, scanCallback)
     }
 
     /**
@@ -202,7 +243,10 @@ class BluetoothManager(private val context: Context) {
         val filter = ScanFilter.Builder()
             .setDeviceName(namePattern)
             .build()
-        scanner.startScan(listOf(filter), scanCallback)
+        val settings = ScanSettings.Builder()
+            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+            .build()
+        scanner.startScan(listOf(filter), settings, scanCallback)
     }
 
     /**
@@ -214,7 +258,10 @@ class BluetoothManager(private val context: Context) {
         val filter = ScanFilter.Builder()
             .setServiceUuid(ParcelUuid(serviceUuid))
             .build()
-        scanner.startScan(listOf(filter), scanCallback)
+        val settings = ScanSettings.Builder()
+            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+            .build()
+        scanner.startScan(listOf(filter), settings, scanCallback)
     }
 
     /**
@@ -375,7 +422,7 @@ class BluetoothManager(private val context: Context) {
 
             // 写入描述符
             val descriptor = characteristic.getDescriptor(
-                BluetoothGattDescriptor.CLIENT_CHARACTERISTIC_CONFIG
+                java.util.UUID.fromString("00002902-0000-1000-8000-00805F9B34FB")
             )
             descriptor?.let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -598,35 +645,5 @@ class BluetoothManager(private val context: Context) {
     fun destroy() {
         Log.d(TAG, "销毁蓝牙管理器")
         disconnect()
-    }
-
-    companion object {
-        /**
-         * 获取蓝牙适配器
-         */
-        fun getBtAdapter(): BluetoothAdapter? {
-            return BluetoothAdapter.getBtAdapter()
-        }
-
-        /**
-         * 检查蓝牙是否可用
-         */
-        fun isBluetoothAvailable(): Boolean {
-            val adapter = getBtAdapter()
-            return adapter?.isEnabled == true
-        }
-
-        /**
-         * 检查是否有蓝牙权限
-         */
-        fun hasBluetoothPermissions(context: Context): Boolean {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                android.Manifest.permission.BLUETOOTH_SCAN in context.packageManager.queryPermissionsByFeature(
-                    android.content.pm.PackageManager.PERMISSION_GRANTED
-                )
-            } else {
-                true
-            }
-        }
     }
 }

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_normal">
+
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/analysis_title"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="@dimen/margin_normal"/>
+
+        <!-- 可用分析次数 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/corner_card"
+            app:cardBackgroundColor="@color/bg_card"
+            android:layout_marginBottom="@dimen/margin_normal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_normal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/analysis_available_times"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_secondary"/>
+
+                    <TextView
+                        android:id="@+id/availableTimesText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 次"
+                        android:textSize="@dimen/text_xlarge"
+                        android:textStyle="bold"
+                        android:textColor="@color/brand_primary"
+                        android:layout_marginTop="@dimen/margin_small"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/getMoreButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analysis_get_more"
+                    style="@style/Widget.Material3.Button.OutlinedButton"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 分析类型选择 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择分析类型"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="@dimen/margin_normal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/margin_normal">
+
+            <!-- 发球分析 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/serveCard"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/corner_card"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginEnd="@dimen/margin_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_normal">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_serve"
+                        android:contentDescription="发球"
+                        android:tint="@color/shot_serve"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/analysis_serve"
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginTop="@dimen/margin_small"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 正手分析 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/forehandCard"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/corner_card"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_normal">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_forehand"
+                        android:contentDescription="正手"
+                        android:tint="@color/shot_forehand"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/analysis_forehand"
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginTop="@dimen/margin_small"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 反手分析 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/backhandCard"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/corner_card"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginStart="@dimen/margin_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_normal">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_backhand"
+                        android:contentDescription="反手"
+                        android:tint="@color/shot_backhand"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/analysis_backhand"
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginTop="@dimen/margin_small"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- 上传视频 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/corner_card"
+            app:cardBackgroundColor="@color/bg_card"
+            android:layout_marginBottom="@dimen/margin_normal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_normal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analysis_upload_video"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="@dimen/margin_normal"/>
+
+                <Button
+                    android:id="@+id/uploadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:text="@string/analysis_select_from_album"
+                    android:textSize="@dimen/text_medium"
+                    android:background="@drawable/bg_button_primary"
+                    android:layout_marginBottom="@dimen/margin_small"/>
+
+                <Button
+                    android:id="@+id/recordButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:text="@string/analysis_record_video"
+                    android:textSize="@dimen/text_medium"
+                    style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analysis_video_duration_limit"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint"
+                    android:layout_marginTop="@dimen/margin_small"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

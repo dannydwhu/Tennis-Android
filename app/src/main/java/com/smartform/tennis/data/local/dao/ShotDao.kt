@@ -5,6 +5,14 @@ import com.smartform.tennis.data.local.entity.ShotEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
+ * Data class for shot count by type query result
+ */
+data class ShotCountByType(
+    @ColumnInfo(name = "shotType") val shotType: String,
+    @ColumnInfo(name = "count") val count: Int
+)
+
+/**
  * 击球记录数据访问对象
  */
 @Dao
@@ -50,7 +58,7 @@ interface ShotDao {
     suspend fun getCountByUserId(userId: Long): Int
 
     @Query("SELECT shotType, COUNT(*) as count FROM shots WHERE userId = :userId GROUP BY shotType")
-    suspend fun getCountByType(userId: Long): List<Map<String, Any>>
+    suspend fun getCountByType(userId: Long): List<ShotCountByType>
 
     @Query("SELECT MAX(maxSpeed) FROM shots WHERE userId = :userId AND shotType = :shotType")
     suspend fun getMaxSpeedByType(userId: Long, shotType: String): Double?

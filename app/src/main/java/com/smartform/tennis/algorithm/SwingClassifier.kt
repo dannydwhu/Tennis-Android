@@ -281,19 +281,19 @@ class SwingClassifier {
             SwingType.SLICE -> {
                 // 切削：动作平稳获得高分
                 if (features.stdAcceleration < 3.0f) score += 20f
-                if (features.durationMs in 400f..600f) score += 15f
+                if (features.durationMs in 400L..600L) score += 15f
             }
 
             SwingType.SERVE -> {
                 // 发球：旋转角度大、时长充足获得高分
                 if (features.rotationAngle > 2.5f) score += 20f
-                if (features.durationMs > 600f) score += 15f
+                if (features.durationMs > 600L) score += 15f
                 if (features.maxAngularVelocity > 4.0f) score += 10f
             }
 
             SwingType.FOREHAND_VOLLEY, SwingType.BACKHAND_VOLLEY -> {
                 // 截击：短促有力获得高分
-                if (features.durationMs < 250f) score += 20f
+                if (features.durationMs < 250L) score += 20f
                 if (features.maxAcceleration in 8f..15f) score += 15f
             }
 

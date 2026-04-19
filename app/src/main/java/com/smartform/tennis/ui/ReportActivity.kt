@@ -5,11 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatters.ValueFormatter
 import com.smartform.tennis.R
 import com.smartform.tennis.data.local.entity.TrainingSessionEntity
 import com.smartform.tennis.databinding.ActivityReportBinding
@@ -90,66 +85,21 @@ class ReportActivity : AppCompatActivity() {
         // 最大速度
         binding.maxSpeedText.text = String.format("%.1f km/h", session.maxSpeed ?: 0.0)
 
-        // 图表
-        setupChart(session)
+        // 击球分布
+        displayShotDistribution(session)
     }
 
-    private fun setupChart(session: TrainingSessionEntity) {
-        val chart = binding.shotTypeChart
-
-        // 准备数据
-        val entries = listOf(
-            BarEntry(0f, session.forehandCount.toFloat()),
-            BarEntry(1f, session.backhandCount.toFloat()),
-            BarEntry(2f, session.sliceCount.toFloat()),
-            BarEntry(3f, session.serveCount.toFloat()),
-            BarEntry(4f, session.forehandVolleyCount.toFloat()),
-            BarEntry(5f, session.backhandVolleyCount.toFloat())
-        )
-
-        val dataSet = BarDataSet(entries, "击球次数").apply {
-            colors = listOf(
-                getColor(R.color.shot_forehand),
-                getColor(R.color.shot_backhand),
-                getColor(R.color.shot_slice),
-                getColor(R.color.shot_serve),
-                getColor(R.color.shot_forehand_volley),
-                getColor(R.color.shot_backhand_volley)
-            )
-            valueTextColor = getColor(android.R.color.black)
-            valueTextSize = 12f
+    private fun displayShotDistribution(session: TrainingSessionEntity) {
+        // 显示击球分布列表
+        binding.chartPlaceholder.text = buildString {
+            appendLine("击球分布:")
+            appendLine("  正手：${session.forehandCount ?: 0}")
+            appendLine("  反手：${session.backhandCount ?: 0}")
+            appendLine("  切削：${session.sliceCount ?: 0}")
+            appendLine("  发球：${session.serveCount ?: 0}")
+            appendLine("  正手截击：${session.forehandVolleyCount ?: 0}")
+            appendLine("  反手截击：${session.backhandVolleyCount ?: 0}")
         }
-
-        chart.data = BarData(dataSet).apply {
-            barWidth = 0.6f
-        }
-
-        chart.xAxis.apply {
-            valueFormatter = object : ValueFormatter() {
-                override fun getFormattedValue(value: Float): String {
-                    return when (value.toInt()) {
-                        0 -> "正手"
-                        1 -> "反手"
-                        2 -> "切削"
-                        3 -> "发球"
-                        4 -> "正截"
-                        5 -> "反截"
-                        else -> ""
-                    }
-                }
-            }
-            granularity = 1f
-            labelRotationAngle = -45f
-        }
-
-        chart.axisLeft.apply {
-            axisMinimum = 0f
-        }
-
-        chart.axisRight.isEnabled = false
-        chart.description.isEnabled = false
-        chart.legend.isEnabled = false
-        chart.invalidate()
     }
 
     private fun shareReport() {

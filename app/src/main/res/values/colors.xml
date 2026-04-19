@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 主题颜色 -->
-    <color name="primary">#FF6B35</color>
-    <color name="primary_dark">#E55A2B</color>
-    <color name="primary_light">#FF8C5A</color>
-    <color name="accent">#00A896</color>
-    <color name="accent_secondary">#028090</color>
+    <!-- 品牌主色 -->
+    <color name="brand_primary">#00D68F</color>
+    <color name="brand_secondary">#3366FF</color>
+    <color name="brand_accent">#FF6B35</color>
 
-    <!-- 背景颜色 -->
-    <color name="background">#FAFAFA</color>
-    <color name="surface">#FFFFFF</color>
-    <color name="card_background">#FFFFFF</color>
+    <!-- 深色主题背景 -->
+    <color name="bg_dark">#0D1117</color>
+    <color name="bg_card">#161B22</color>
+    <color name="bg_surface">#1C2128</color>
 
     <!-- 文字颜色 -->
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="text_hint">#BDBDBD</color>
-    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#FFFFFF99</color>
+    <color name="text_tertiary">#FFFFFF66</color>
+    <color name="text_disabled">#FFFFFF33</color>
+
+    <!-- 击球类型语义色 -->
+    <color name="shot_forehand">#00D68F</color>
+    <color name="shot_backhand">#3366FF</color>
+    <color name="shot_slice">#FFD600</color>
+    <color name="shot_serve">#FF6B35</color>
+    <color name="shot_forehand_volley">#9B51E0</color>
+    <color name="shot_backhand_volley">#00BCD4</color>
 
     <!-- 状态颜色 -->
     <color name="success">#4CAF50</color>
     <color name="warning">#FFC107</color>
     <color name="error">#F44336</color>
-    <color name="info">#2196F3</color>
+    <color name="speed_peak">#FF1744</color>
 
-    <!-- 击球类型颜色 -->
-    <color name="shot_forehand">#FF6B35</color>
-    <color name="shot_backhand">#00A896</color>
-    <color name="shot_slice">#028090</color>
-    <color name="shot_serve">#E55A2B</color>
-    <color name="shot_forehand_volley">#F0A500</color>
-    <color name="shot_backhand_volley">#CB356B</color>
+    <!-- 主题颜色 (兼容现有代码) -->
+    <color name="primary">#00D68F</color>
+    <color name="primary_dark">#00A87A</color>
+    <color name="primary_light">#33E0A8</color>
+    <color name="accent">#3366FF</color>
+    <color name="accent_secondary">#5A7DFF</color>
+
+    <!-- 背景颜色 (兼容现有代码) -->
+    <color name="background">#0D1117</color>
+    <color name="surface">#161B22</color>
+    <color name="card_background">#161B22</color>
+
+    <!-- 文字颜色 (兼容现有代码) -->
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_hint">#FFFFFF66</color>
+
+    <!-- 排行榜颜色 -->
+    <color name="gold">#FFD700</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="bronze">#CD7F32</color>
 </resources>

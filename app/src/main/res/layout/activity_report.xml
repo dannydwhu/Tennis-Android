@@ -152,12 +152,16 @@
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"/>
 
-            <!-- MPAndroidChart 柱状图 -->
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/shotTypeChart"
+            <!-- Chart placeholder - MPAndroidChart temporarily disabled -->
+            <TextView
+                android:id="@+id/chartPlaceholder"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="图表功能暂不可用"
+                android:textSize="@dimen/text_medium"
+                android:textColor="@color/text_secondary"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -165,11 +169,11 @@
     <Button
         android:id="@+id/shareButton"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginTop="@dimen/margin_normal"
         android:text="@string/report_share"
         android:textSize="@dimen/text_medium"
-        android:background="@drawable/bg_button_primary"
+        style="@style/Widget.Material3.Button"
         app:layout_constraintTop_toBottomOf="@id/chartCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

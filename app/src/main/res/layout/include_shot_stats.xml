@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 正手击球 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_small">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@color/shot_forehand"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/shot_forehand"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/forehandText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
+
+    <!-- 反手击球 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_small">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@color/shot_backhand"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/shot_backhand"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/backhandText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
+
+    <!-- 切削 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_small">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@color/shot_slice"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/shot_slice"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/sliceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
+
+    <!-- 发球/高压 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_small">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@color/shot_serve"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/shot_serve"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/serveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
+
+    <!-- 正手截击 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_small">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@color/shot_forehand_volley"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/shot_forehand_volley"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/forehandVolleyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
+
+    <!-- 反手截击 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/margin_small">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@color/shot_backhand_volley"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/shot_backhand_volley"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/backhandVolleyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/text_primary"/>
+    </LinearLayout>
+</merge>

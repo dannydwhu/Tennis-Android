@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Smartform Tennis</string>
+    <!-- 应用名称 -->
+    <string name="app_name">Smartform</string>
 
     <!-- 通用 -->
     <string name="ok">确定</string>
@@ -11,7 +12,132 @@
     <string name="error_network">网络错误，请检查网络连接</string>
     <string name="error_bluetooth">蓝牙连接失败</string>
 
-    <!-- 登录界面 -->
+    <!-- 单位 -->
+    <string name="unit_km_h">km/h</string>
+    <string name="unit_times">次</string>
+    <string name="unit_min">分钟</string>
+    <string name="unit_sec">秒</string>
+    <string name="unit_cal">卡路里</string>
+
+    <!-- 底部导航 -->
+    <string name="nav_live">实况</string>
+    <string name="nav_data">数据</string>
+    <string name="nav_analysis">分析</string>
+    <string name="nav_leaderboard">排行榜</string>
+    <string name="nav_profile">我的</string>
+
+    <!-- LIVE 实况页 -->
+    <string name="live_start_training">开始训练</string>
+    <string name="live_stop_training">结束训练</string>
+    <string name="live_connect_device">连接设备</string>
+    <string name="live_connected">已连接</string>
+    <string name="live_training_time">训练时长</string>
+    <string name="live_calories">卡路里</string>
+    <string name="live_total_shots">总击球数</string>
+    <string name="live_max_speed">最大速度</string>
+    <string name="live_combo">连击</string>
+    <string name="live_combo_count">%d 连击</string>
+    <string name="live_speed_dashboard">速度</string>
+    <string name="live_waiting_device">请连接设备后开始训练</string>
+    <string name="home_connect_device">连接设备</string>
+    <string name="home_total_shots">总击球数</string>
+    <string name="home_max_speed">最大速度</string>
+    <string name="home_start_training">开始训练</string>
+    <string name="home_stop_training">结束训练</string>
+
+    <!-- 击球类型 -->
+    <string name="shot_forehand">正手击球</string>
+    <string name="shot_backhand">反手击球</string>
+    <string name="shot_slice">切削球</string>
+    <string name="shot_serve">高压/发球</string>
+    <string name="shot_forehand_volley">正手截击</string>
+    <string name="shot_backhand_volley">反手截击</string>
+
+    <!-- DATA 数据页 -->
+    <string name="data_title">运动数据</string>
+    <string name="data_tab_today">今日</string>
+    <string name="data_tab_week">本周</string>
+    <string name="data_tab_month">本月</string>
+    <string name="data_tab_year">本年</string>
+    <string name="data_total_shots">总击球数</string>
+    <string name="data_total_calories">总消耗</string>
+    <string name="data_total_duration">运动时长</string>
+    <string name="data_max_speed">最大挥速</string>
+    <string name="data_avg_speed">平均挥速</string>
+    <string name="data_ability_analysis">能力分析</string>
+    <string name="data_power">爆发力</string>
+    <string name="data_offense">进攻性</string>
+    <string name="data_activity">活跃度</string>
+    <string name="data_consistency">对抗性</string>
+    <string name="data_endurance">耐力</string>
+    <string name="data_speed_distribution">挥速区间分布</string>
+    <string name="data_goal_setting">目标设定</string>
+    <string name="data_goal_duration">运动时长目标</string>
+    <string name="data_goal_calories">卡路里目标</string>
+    <string name="data_goal_progress">完成进度</string>
+
+    <!-- RANKING 排行榜页 -->
+    <string name="ranking_title">排行榜</string>
+    <string name="ranking_tab_shots">击球数榜</string>
+    <string name="ranking_tab_duration">时长榜</string>
+    <string name="ranking_tab_speed">速度榜</string>
+    <string name="ranking_tab_total">总榜</string>
+    <string name="ranking_rank">第%1$d名</string>
+    <string name="ranking_my_rank">我的排名</string>
+    <string name="ranking_not_ranked">未上榜</string>
+    <string name="ranking_keep_going">继续加油</string>
+    <string name="ranking_weekly_champion">本周球王</string>
+
+    <!-- PROFILE 我的页面 -->
+    <string name="profile_title">我的</string>
+    <string name="profile_user_info">用户信息</string>
+    <string name="profile_nickname">昵称</string>
+    <string name="profile_user_id">ID: %1$s</string>
+    <string name="profile_level">等级</string>
+    <string name="profile_level_prefix">Lv.%1$d</string>
+    <string name="profile_exp_progress">经验进度</string>
+    <string name="profile_next_level">距离下一级还需%1$d经验</string>
+    <string name="profile_training_calendar">运动日历</string>
+    <string name="profile_training_history">训练历史</string>
+    <string name="profile_settings">设置</string>
+    <string name="profile_device_manage">设备管理</string>
+    <string name="profile_account_security">账号安全</string>
+    <string name="profile_privacy_policy">隐私政策</string>
+    <string name="profile_terms_of_service">用户协议</string>
+    <string name="profile_logout">退出登录</string>
+    <string name="profile_edit">编辑资料</string>
+
+    <!-- ANALYSIS 分析页 -->
+    <string name="analysis_title">视频分析</string>
+    <string name="analysis_available_times">可用分析次数</string>
+    <string name="analysis_times_format">%1$d次</string>
+    <string name="analysis_get_more">获取更多次数</string>
+    <string name="analysis_serve">发球分析</string>
+    <string name="analysis_forehand">正手分析</string>
+    <string name="analysis_backhand">反手分析</string>
+    <string name="analysis_upload_video">上传视频</string>
+    <string name="analysis_record_video">录制视频</string>
+    <string name="analysis_select_from_album">从相册选择</string>
+    <string name="analysis_video_duration_limit">视频时长不超过 4 秒</string>
+    <string name="analysis_result_score">动作评分</string>
+    <string name="analysis_result_suggestion">改进建议</string>
+
+    <!-- 训练报告 -->
+    <string name="report_title">训练报告</string>
+    <string name="report_date">训练日期</string>
+    <string name="report_duration">训练时长</string>
+    <string name="report_shots">击球总数</string>
+    <string name="report_distribution">击球分布</string>
+    <string name="report_heatmap">热力图</string>
+    <string name="report_speed_curve">速度曲线</string>
+    <string name="report_share">分享报告</string>
+
+    <!-- 用户协议 -->
+    <string name="terms_title">用户协议与隐私政策</string>
+    <string name="terms_agree">同意并继续</string>
+    <string name="terms_disagree">不同意</string>
+
+    <!-- 登录页面 -->
     <string name="login_title">欢迎使用 Smartform</string>
     <string name="login_phone">手机号登录</string>
     <string name="login_wechat">微信登录</string>
@@ -21,63 +147,24 @@
     <string name="login_privacy">《隐私政策》</string>
 
     <!-- 用户信息收集 -->
-    <string name="profile_title">完善个人信息</string>
+    <string name="profile_complete_title">完善个人信息</string>
     <string name="profile_height">身高 (cm)</string>
     <string name="profile_weight">体重 (kg)</string>
-    <string name="profile_level">网球评级</string>
+    <string name="profile_tennis_level">网球评级</string>
     <string name="profile_level_beginner">新手</string>
     <string name="profile_level_amateur">业余</string>
     <string name="profile_level_advanced">高手</string>
     <string name="profile_level_pro">专业</string>
-    <string name="profile_save">保存并开始</string>
-
-    <!-- 主页 -->
-    <string name="home_start_training">开始训练</string>
-    <string name="home_stop_training">结束训练</string>
-    <string name="home_connect_device">连接设备</string>
-    <string name="home_connected">已连接</string>
-    <string name="home_training_time">训练时长</string>
-    <string name="home_total_shots">总击球数</string>
-    <string name="home_max_speed">最大速度</string>
-
-    <!-- 击球类型 -->
-    <string name="shot_forehand">正手击球</string>
-    <string name="shot_backhand">反手击球</string>
-    <string name="shot_slice">切削</string>
-    <string name="shot_serve">高压/发球</string>
-    <string name="shot_forehand_volley">正手截击</string>
-    <string name="shot_backhand_volley">反手截击</string>
-
-    <!-- 底部导航 -->
-    <string name="nav_home">主页</string>
-    <string name="nav_history">历史</string>
-    <string name="nav_leaderboard">排行榜</string>
-    <string name="nav_profile">我的</string>
-
-    <!-- 排行榜 -->
-    <string name="leaderboard_total">总击球榜</string>
-    <string name="leaderboard_weekly">周榜</string>
-    <string name="leaderboard_speed">速度榜</string>
-    <string name="leaderboard_rank">排名</string>
-    <string name="leaderboard_title_prefix">第</string>
-    <string name="leaderboard_title_suffix">名</string>
+    <string name="profile_save_start">保存并开始</string>
 
     <!-- 成长系统 -->
     <string name="growth_level">等级</string>
     <string name="growth_exp">经验值</string>
-    <string name="growth_next_level">距离下一级还差</string>
+    <string name="growth_next_level">距离下一级还需</string>
     <string name="growth_exp_points">经验</string>
 
-    <!-- 训练报告 -->
-    <string name="report_title">训练报告</string>
-    <string name="report_share">分享</string>
-    <string name="report_duration">训练时长</string>
-    <string name="report_shots">击球总数</string>
-    <string name="report_heatmap">热力图</string>
-    <string name="report_chart">数据图表</string>
-
-    <!-- 用户协议 -->
-    <string name="terms_title">用户协议与隐私政策</string>
-    <string name="terms_agree">同意并继续</string>
-    <string name="terms_disagree">不同意</string>
+    <!-- 空状态 -->
+    <string name="empty_training_history">暂无训练记录</string>
+    <string name="empty_leaderboard">暂无排名数据</string>
+    <string name="empty_analysis_times">暂无可用次数</string>
 </resources>

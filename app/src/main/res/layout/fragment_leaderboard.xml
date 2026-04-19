@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ranking_title"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:padding="@dimen/margin_normal"/>
+
+    <!-- Tab 切换 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_normal">
+
+        <TextView
+            android:id="@+id/tabShots"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ranking_tab_shots"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/brand_primary"
+            android:gravity="center"
+            android:paddingVertical="@dimen/margin_small"
+            android:background="@drawable/bg_tab_selected"/>
+
+        <TextView
+            android:id="@+id/tabDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ranking_tab_duration"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:paddingVertical="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"/>
+
+        <TextView
+            android:id="@+id/tabSpeed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ranking_tab_speed"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:paddingVertical="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"/>
+
+        <TextView
+            android:id="@+id/tabTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ranking_tab_total"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:paddingVertical="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"/>
+    </LinearLayout>
+
+    <!-- 本周球王 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_card"
+        app:cardBackgroundColor="@color/bg_card"
+        android:layout_marginHorizontal="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_normal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_normal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ranking_weekly_champion"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="@dimen/margin_small"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_crown"
+                android:contentDescription="球王"
+                android:layout_marginBottom="@dimen/margin_small"/>
+
+            <TextView
+                android:id="@+id/championNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张三"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="@dimen/margin_small"/>
+
+            <TextView
+                android:id="@+id/championStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总击球数：5,678 次"
+                android:textSize="@dimen/text_normal"
+                android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 排行榜列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rankingRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="@dimen/margin_normal"/>
+</LinearLayout>

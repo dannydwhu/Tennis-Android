@@ -6,25 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- 蓝牙权限 (Android 12+) -->
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
-        android:usesPermissionFlags="neverForLocation"
-        tools:targetApi="s" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <!-- 蓝牙权限 (Android 11 及以下) -->
-    <uses-permission android:name="android.permission.BLUETOOTH"
-        android:maxSdkVersion="30" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
-        android:maxSdkVersion="30" />
-
-    <!-- 位置权限 (用于蓝牙扫描) -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- 蓝牙特性声明 -->
-    <uses-feature android:name="android.hardware.bluetooth" android:required="true" />
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
-
     <application
         android:name=".TennisApplication"
         android:allowBackup="true"
@@ -33,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartformTennis"
-        android:usesCleartextTraffic="true"
         tools:targetApi="34">
 
         <!-- 主界面 -->
@@ -46,42 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- 登录界面 -->
-        <activity
-            android:name=".ui.LoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- 训练界面 -->
-        <activity
-            android:name=".ui.TrainingActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- 训练报告界面 -->
-        <activity
-            android:name=".ui.ReportActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- 排行榜界面 -->
-        <activity
-            android:name=".ui.LeaderboardActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- 个人中心界面 -->
-        <activity
-            android:name=".ui.ProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- 用户协议界面 -->
-        <activity
-            android:name=".ui.TermsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
 
     </application>
 

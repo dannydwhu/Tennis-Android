@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_normal">
+
+        <!-- 用户头像和昵称 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/margin_large">
+
+            <ImageView
+                    android:id="@+id/avatarImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_default_avatar"
+                    android:contentDescription="用户头像"/>
+
+            <TextView
+                    android:id="@+id/nicknameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="未登录"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"/>
+
+            <TextView
+                    android:id="@+id/userIdText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="ID: --"
+                    android:textSize="@dimen/text_normal"
+                    android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+
+        <!-- 成长系统卡片 -->
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/corner_card"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginBottom="@dimen/margin_normal">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_normal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_user_info"
+                        android:textSize="@dimen/text_title"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="@dimen/margin_normal"/>
+
+                <!-- 等级和经验 -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                    <TextView
+                            android:id="@+id/levelText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lv.1"
+                            android:textSize="@dimen/text_medium"
+                            android:textStyle="bold"
+                            android:textColor="@color/brand_primary"/>
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_exp_progress"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/text_secondary"/>
+                </LinearLayout>
+
+                <!-- 经验进度条 -->
+                <ProgressBar
+                        android:id="@+id/expProgressBar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:max="100"
+                        android:progress="20"
+                        android:progressDrawable="@drawable/bg_progress_bar"/>
+
+                <TextView
+                        android:id="@+id/expText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="距离下一级还需 80 经验"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_tertiary"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 功能菜单 -->
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/corner_card"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginBottom="@dimen/margin_normal">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <!-- 设备管理 -->
+                <LinearLayout
+                        android:id="@+id/deviceMenuItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/margin_normal"
+                        android:gravity="center_vertical"
+                        android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_bluetooth"
+                            android:contentDescription="设备管理"
+                            android:tint="@color/text_secondary"/>
+
+                    <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:text="@string/profile_device_manage"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_primary"/>
+
+                    <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:contentDescription="更多"
+                            android:tint="@color/text_secondary"/>
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/text_hint"/>
+
+                <!-- 设置 -->
+                <LinearLayout
+                        android:id="@+id/settingsMenuItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/margin_normal"
+                        android:gravity="center_vertical"
+                        android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_settings"
+                            android:contentDescription="设置"
+                            android:tint="@color/text_secondary"/>
+
+                    <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:text="@string/profile_settings"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_primary"/>
+
+                    <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:contentDescription="更多"
+                            android:tint="@color/text_secondary"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 退出登录按钮 -->
+        <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:text="@string/profile_logout"
+                android:textSize="@dimen/text_medium"
+                android:background="@drawable/bg_button_danger"/>
+    </LinearLayout>
+</ScrollView>

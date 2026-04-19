@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.smartform.tennis"
-        minSdk = 21
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
@@ -18,8 +18,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file(System.getenv("KEYSTORE_PATH") ?: "/Users/hudawei/tennis-app-keystore.jks")
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+            keyAlias = System.getenv("KEY_ALIAS") ?: "tennis-app"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -71,8 +81,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
-    // Charts (MPAndroidChart)
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    // Charts (MPAndroidChart) - Temporarily disabled due to network issues
+    // implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // Bluetooth (Kotlin 科来蓝牙库 - 可选，或使用原生 API)
     // implementation("no.nordicsemi.android:ble:2.6.0")
@@ -88,4 +98,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test:rules:1.5.0")
 }

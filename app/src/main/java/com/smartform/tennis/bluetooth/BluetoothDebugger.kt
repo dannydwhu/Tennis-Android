@@ -5,6 +5,8 @@ import com.smartform.tennis.bluetooth.BluetoothManager.SensorDataPacket
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 /**
  * 蓝牙调试工具
@@ -104,7 +106,7 @@ class BluetoothDebugger {
 
         val avgInterval = intervals.average()
         val intervalStdDev = if (intervals.size > 1) {
-            kotlin.math.sqrt(intervals.map { (it - avgInterval).pow(2) }.average())
+            sqrt(intervals.map { (it - avgInterval).pow(2) }.average())
         } else {
             0.0
         }

@@ -27,5 +27,6 @@ data class SensorDataEntity(
     val gz: Double,
     val mx: Double,
     val my: Double,
-    val mz: Double
+    val mz: Double,
+    val isSynced: Boolean = false  // 是否已同步到服务器
 )

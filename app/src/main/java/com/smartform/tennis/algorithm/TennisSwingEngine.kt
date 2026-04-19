@@ -80,7 +80,7 @@ class TennisSwingEngine {
         if (detectionResult.isSwingDetected && detectionResult.dataWindow != null) {
             val swingEvent = classifyAndCalculate(detectionResult.dataWindow)
 
-            if (swingEvent?.swingType != SwingType.UNKNOWN) {
+            if (swingEvent != null && swingEvent.swingType != SwingType.UNKNOWN) {
                 // 更新统计
                 updateStats(swingEvent)
 
