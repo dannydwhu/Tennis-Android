@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/margin_normal"
+        android:background="@color/text_secondary"
+        android:alpha="0.3"/>
+
+    <!-- 我的排名（当排名 > 10 时显示在底部） -->
+    <LinearLayout
+        android:id="@+id/myRankContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_normal"
+        android:gravity="center_vertical"
+        android:background="#1A8BC34A">
+
+        <!-- 头像 -->
+        <TextView
+            android:id="@+id/myAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="🧑"
+            android:textSize="24dp"
+            android:background="@drawable/bg_avatar_circle"
+            android:backgroundTint="@color/text_secondary"/>
+
+        <!-- 昵称 -->
+        <TextView
+            android:id="@+id/myNickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="我"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold"
+            android:textColor="@color/brand_primary"/>
+
+        <!-- 差距提示 -->
+        <TextView
+            android:id="@+id/myGapText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="距第3名还差 0 球"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/text_secondary"/>
+    </LinearLayout>
+</LinearLayout>

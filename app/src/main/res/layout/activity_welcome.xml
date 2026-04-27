@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark"
+    android:gravity="center">
+
+    <!-- Logo 和标题 -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_tennis_logo"
+        android:layout_marginBottom="@dimen/margin_large"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smartform Tennis"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/brand_primary"
+        android:layout_marginBottom="@dimen/margin_small"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="智能网球训练助手"
+        android:textSize="@dimen/text_medium"
+        android:textColor="@color/text_secondary"
+        android:layout_marginBottom="80dp"/>
+
+    <!-- 登录按钮 -->
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="280dp"
+        android:layout_height="@dimen/btn_height"
+        android:text="开始体验"
+        android:textSize="@dimen/text_medium"
+        android:textColor="@color/text_on_primary"
+        android:background="@drawable/bg_button_primary"
+        android:layout_marginBottom="@dimen/margin_normal"/>
+
+    <!-- 已有账号登录 -->
+    <TextView
+        android:id="@+id/loginLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已有账号？登录"
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/brand_primary"
+        android:padding="@dimen/margin_small"/>
+</LinearLayout>

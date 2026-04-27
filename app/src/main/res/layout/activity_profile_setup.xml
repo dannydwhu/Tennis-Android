@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- 标题栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/margin_normal">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/text_primary"/>
+    </LinearLayout>
+
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="完善个人信息"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:paddingHorizontal="@dimen/margin_normal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="帮助我们更好地为您定制训练计划"
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/text_secondary"
+        android:paddingHorizontal="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_large"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="@dimen/margin_normal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 头像 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/margin_large">
+
+                <TextView
+                    android:id="@+id/avatarText"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:text="🎾"
+                    android:textSize="36dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:backgroundTint="@color/brand_primary_light"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点击更换头像（选填）"
+                    android:textSize="@dimen/text_normal"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="@dimen/margin_normal"/>
+            </LinearLayout>
+
+            <!-- 昵称 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昵称"
+                android:textSize="@dimen/text_normal"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="@dimen/margin_small"/>
+
+            <EditText
+                android:id="@+id/nicknameInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_input"
+                android:hint="请输入昵称"
+                android:textColorHint="@color/text_hint"
+                android:textColor="@color/text_primary"
+                android:paddingHorizontal="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal"/>
+
+            <!-- 身高体重 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/margin_normal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/margin_small">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="身高 (cm)"
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="@dimen/margin_small"/>
+
+                    <EditText
+                        android:id="@+id/heightInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="170"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_hint"
+                        android:textColor="@color/text_primary"
+                        android:paddingHorizontal="@dimen/margin_normal"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/margin_small">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="体重 (kg)"
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="@dimen/margin_small"/>
+
+                    <EditText
+                        android:id="@+id/weightInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="65"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_hint"
+                        android:textColor="@color/text_primary"
+                        android:paddingHorizontal="@dimen/margin_normal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 网球水平 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网球水平"
+                android:textSize="@dimen/text_normal"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="@dimen/margin_small"/>
+
+            <RadioGroup
+                android:id="@+id/levelGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/levelNewbie"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_level_selector"
+                    android:button="@null"
+                    android:paddingHorizontal="@dimen/margin_normal"
+                    android:text="新手  ·  刚接触网球"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_medium"
+                    android:drawableStart="@drawable/ic_level_newbie"
+                    android:drawablePadding="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"/>
+
+                <RadioButton
+                    android:id="@+id/levelAmateur"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_level_selector"
+                    android:button="@null"
+                    android:paddingHorizontal="@dimen/margin_normal"
+                    android:text="业余  ·  有一定基础"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_medium"
+                    android:drawableStart="@drawable/ic_level_amateur"
+                    android:drawablePadding="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"/>
+
+                <RadioButton
+                    android:id="@+id/levelPro"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_level_selector"
+                    android:button="@null"
+                    android:paddingHorizontal="@dimen/margin_normal"
+                    android:text="高手  ·  经常打球"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_medium"
+                    android:drawableStart="@drawable/ic_level_pro"
+                    android:drawablePadding="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"/>
+
+                <RadioButton
+                    android:id="@+id/levelExpert"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_level_selector"
+                    android:button="@null"
+                    android:paddingHorizontal="@dimen/margin_normal"
+                    android:text="专业  ·  系统训练"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_medium"
+                    android:drawableStart="@drawable/ic_level_expert"
+                    android:drawablePadding="@dimen/margin_normal"/>
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 底部按钮 -->
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:layout_margin="@dimen/margin_normal"
+        android:text="下一步"
+        android:textSize="@dimen/text_medium"
+        android:textColor="@color/text_on_primary"
+        android:background="@drawable/bg_button_primary"/>
+</LinearLayout>
