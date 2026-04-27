@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.smartform.tennis.R
 import com.smartform.tennis.ui.fragment.DataFragment
+import com.smartform.tennis.ui.fragment.LeaderboardFragment
 import com.smartform.tennis.ui.fragment.LiveFragment
+import com.smartform.tennis.ui.fragment.ProfileFragment
 
 /**
  * 主页 Activity - 底部导航
@@ -46,6 +48,14 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.navigation_data -> {
                         loadFragment(DataFragment())
+                        true
+                    }
+                    R.id.navigation_leaderboard -> {
+                        loadFragment(LeaderboardFragment())
+                        true
+                    }
+                    R.id.navigation_profile -> {
+                        loadFragment(ProfileFragment())
                         true
                     }
                     else -> false

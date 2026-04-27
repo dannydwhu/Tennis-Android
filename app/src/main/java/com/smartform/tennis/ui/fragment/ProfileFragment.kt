@@ -32,29 +32,35 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // 设备管理菜单
-        binding.deviceMenuItem.setOnClickListener {
-            showToast("设备管理")
-        }
-
-        // 设置菜单
-        binding.settingsMenuItem.setOnClickListener {
+        // 设置点击事件
+        binding.settingsCard.setOnClickListener {
             showToast("设置")
         }
 
-        // 退出登录
-        binding.logoutButton.setOnClickListener {
-            showToast("退出登录")
+        binding.syncCard.setOnClickListener {
+            showToast("数据同步")
+        }
+
+        binding.feedbackCard.setOnClickListener {
+            showToast("意见反馈")
+        }
+
+        binding.legalCard.setOnClickListener {
+            showToast("法律条款")
+        }
+
+        binding.aboutCard.setOnClickListener {
+            showToast("关于我们")
         }
     }
 
     private fun loadMockUserData() {
         // 模拟用户数据
-        binding.nicknameText.text = "网球爱好者"
-        binding.userIdText.text = "ID: 10001"
-        binding.levelText.text = "Lv.5"
-        binding.expProgressBar.progress = 20
-        binding.expText.text = "距离下一级还需 80 经验"
+        binding.nicknameText.text = "网球达人"
+        binding.levelText.text = "Level 5"
+        binding.trainingCountText.text = "156次"
+        binding.bestScoreText.text = "186 km/h"
+        binding.totalDaysText.text = "45天"
     }
 
     private fun showToast(message: String) {

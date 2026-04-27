@@ -2,6 +2,7 @@
 <resources>
     <!-- 品牌主色 -->
     <color name="brand_primary">#00D68F</color>
+    <color name="brand_primary_light">#1A00D68F</color>
     <color name="brand_secondary">#3366FF</color>
     <color name="brand_accent">#FF6B35</color>
 
@@ -50,4 +51,11 @@
     <color name="gold">#FFD700</color>
     <color name="silver">#C0C0C0</color>
     <color name="bronze">#CD7F32</color>
+
+    <!-- 浅色主题（个人资料页面） -->
+    <color name="bg_light">#F5F5F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="text_primary_light">#212121</color>
+    <color name="text_secondary_light">#757575</color>
 </resources>

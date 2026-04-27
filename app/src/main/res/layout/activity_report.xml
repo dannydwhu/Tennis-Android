@@ -1,181 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:padding="@dimen/margin_normal">
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
 
-    <!-- 训练标题 -->
-    <TextView
-        android:id="@+id/reportTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="训练报告"
-        android:textSize="@dimen/text_title"
-        android:textStyle="bold"
-        android:textColor="@color/text_primary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+    <!-- 顶部栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/bg_dark">
 
-    <!-- 训练时长 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/durationCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        app:cardCornerRadius="@dimen/corner_normal"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintTop_toBottomOf="@id/reportTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="返回"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_primary"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/margin_normal"
-            android:gravity="center">
+            android:layout_weight="1"
+            android:text="训练报告"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:gravity="center"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="训练时长"
-                android:textSize="@dimen/text_medium"
-                android:textColor="@color/text_secondary"/>
+        <ImageView
+            android:id="@+id/shareButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_share"
+            android:contentDescription="分享"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_primary"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/durationText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:text="00:00"
-                android:textSize="@dimen/text_xlarge"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- 统计数据卡片 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/statsCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        app:cardCornerRadius="@dimen/corner_normal"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintTop_toBottomOf="@id/durationCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/margin_normal">
+            android:padding="16dp">
 
-            <!-- 总击球数 -->
+            <!-- 摘要卡片 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_marginBottom="16dp">
 
-                <TextView
+                <!-- 训练时长 -->
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="总击球数"
-                    android:textSize="@dimen/text_medium"/>
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/bg_card"
+                    android:layout_marginEnd="8dp">
 
-                <TextView
-                    android:id="@+id/totalShotsText"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="训练时长"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"/>
+
+                    <TextView
+                        android:id="@+id/trainingDurationText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="45:23"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
+
+                <!-- 总击球数 -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="@dimen/text_xlarge"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"/>
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/bg_card"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="总击球数"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"/>
+
+                    <TextView
+                        android:id="@+id/totalShotsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="156"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
             </LinearLayout>
 
-            <!-- 最大速度 -->
+            <!-- 主要统计卡片 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/margin_small">
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/bg_card"
+                android:layout_marginBottom="16dp">
 
-                <TextView
-                    android:layout_width="0dp"
+                <!-- 头部：击球类型和最大速度 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="最大速度"
-                    android:textSize="@dimen/text_medium"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/maxSpeedText"
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/strokeTypeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                        android:text="正手击球"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+
+                        <TextView
+                            android:id="@+id/strokeCountText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="45 次"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_secondary"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="最大速度"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"/>
+
+                        <TextView
+                            android:id="@+id/maxSpeedText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="128 km/h"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/brand_primary"
+                            android:fontFamily="sans-serif-medium"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 热力图区域 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#1A1A1A"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_heatmap"
+                        android:alpha="0.5"
+                        android:contentDescription="热力图"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="热力图区域"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_tertiary"/>
+                </LinearLayout>
+
+                <!-- 速度分布图表 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#1A1A1A"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_chart"
+                        android:alpha="0.5"
+                        android:contentDescription="图表"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="速度分布图表"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_tertiary"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- AI 综合评价 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/bg_card"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0 km/h"
-                    android:textSize="@dimen/text_xlarge"
-                    android:textStyle="bold"
-                    android:textColor="@color/accent"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_ai"
+                        android:contentDescription="AI"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="综合评价"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="#1A1A1A"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_quote"
+                        android:alpha="0.5"
+                        android:contentDescription="引用"
+                        android:layout_marginEnd="12dp"/>
+
+                    <TextView
+                        android:id="@+id/aiFeedbackText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="您的正手击球稳定性良好，建议加强反手训练。"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
-    <!-- 击球类型分布图表 -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/chartCard"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="@dimen/margin_normal"
-        app:cardCornerRadius="@dimen/corner_normal"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintTop_toBottomOf="@id/statsCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <!-- 底部按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/bg_dark">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_normal">
+        <Button
+            android:id="@+id/viewDetailButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="查看详细数据"
+            android:textSize="14sp"
+            android:textColor="@color/brand_primary"
+            android:background="@drawable/bg_button_outline"
+            style="?android:attr/borderlessButtonStyle"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="击球类型分布"
-                android:textSize="@dimen/text_medium"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"/>
-
-            <!-- Chart placeholder - MPAndroidChart temporarily disabled -->
-            <TextView
-                android:id="@+id/chartPlaceholder"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="图表功能暂不可用"
-                android:textSize="@dimen/text_medium"
-                android:textColor="@color/text_secondary"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- 分享按钮 -->
-    <Button
-        android:id="@+id/shareButton"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/btn_height"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:text="@string/report_share"
-        android:textSize="@dimen/text_medium"
-        style="@style/Widget.Material3.Button"
-        app:layout_constraintTop_toBottomOf="@id/chartCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/viewRankingButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="查看排行榜"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_primary"
+            style="?android:attr/borderlessButtonStyle"/>
+    </LinearLayout>
+</LinearLayout>

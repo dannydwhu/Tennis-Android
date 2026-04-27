@@ -71,7 +71,14 @@
       "Bash(gradle assembleDebug --no-daemon 2>&1 | tail -30)",
       "Bash(gradle assembleDebug --no-daemon 2>&1 | grep -A 5 \"error:\")",
       "Bash(gradle assembleDebug --no-daemon 2>&1 | grep -E \"\\(error:|e:\\)\" | head -20)",
-      "Bash(gradle assembleDebug --no-daemon 2>&1)"
+      "Bash(gradle assembleDebug --no-daemon 2>&1)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh repo view forrestchang/andrej-karpathy-skills --json description,readme)",
+      "Bash(unzip -l andrej-karpathy-skills-main.zip)",
+      "Bash(unzip -o andrej-karpathy-skills-main.zip -d /tmp/andrej-karpathy-skills)",
+      "Bash(cp -r /tmp/andrej-karpathy-skills/andrej-karpathy-skills-main/skills/karpathy-guidelines ~/.claude/skills/)",
+      "Bash(wc -l /Users/hudawei/j2ee/workspace/Tennis-Android/app/src/main/java/com/smartform/tennis/ui/fragment/*.kt)",
+      "Bash(ls /Users/hudawei/j2ee/workspace/Tennis-Android/app/src/main/java/com/smartform/tennis/ui/*.kt)"
     ]
   }
 }

@@ -27,6 +27,42 @@
             </intent-filter>
         </activity>
 
+        <!-- 欢迎页 -->
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- 权限说明页 -->
+        <activity
+            android:name=".ui.PermissionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- 个人信息录入页 -->
+        <activity
+            android:name=".ui.ProfileSetupActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- 设备绑定页 -->
+        <activity
+            android:name=".ui.DeviceBindActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- 新手引导页 -->
+        <activity
+            android:name=".ui.GuideActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- 训练报告页面 -->
+        <activity
+            android:name=".ui.ReportActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

@@ -58,6 +58,7 @@ class TrainingFragment : Fragment() {
 
     // 训练状态
     private var isTraining = false
+    private var hasStopped = false  // 防止重复停止
     private var startTime = 0L
     private val random = Random()
 
@@ -69,6 +70,7 @@ class TrainingFragment : Fragment() {
     // TennisSwingEngine
     private val swingEngine = TennisSwingEngine()
     private val handler = Handler(Looper.getMainLooper())
+    private var contextRef: android.content.Context? = null
 
     // 模拟数据生成
     private var dataSequence = 0L
@@ -82,7 +84,7 @@ class TrainingFragment : Fragment() {
     // 计时器任务
     private val timerTask = object : Runnable {
         override fun run() {
-            if (isTraining) {
+            if (isTraining && timerText != null) {
                 val elapsed = System.currentTimeMillis() - startTime
                 val minutes = elapsed / 60000
                 val seconds = (elapsed % 60000) / 1000
@@ -95,7 +97,9 @@ class TrainingFragment : Fragment() {
     // 模拟训练运行任务
     private val trainingTask = object : Runnable {
         override fun run() {
-            if (isTraining) {
+            if (!isTraining) return
+
+            try {
                 // 生成模拟传感器数据
                 val dataPoint = generateMockSensorData()
 
@@ -113,6 +117,8 @@ class TrainingFragment : Fragment() {
 
                 // 继续下一个数据点
                 handler.postDelayed(this, 10) // 100Hz 频率
+            } catch (e: Exception) {
+                // 忽略异常，防止崩溃
             }
         }
     }
@@ -325,6 +331,7 @@ class TrainingFragment : Fragment() {
         startTime = System.currentTimeMillis()
         dataSequence = 0L
         lastLogUpdate = startTime
+        contextRef = context
 
         // 重置引擎并重新开始
         swingEngine.reset()
@@ -362,22 +369,79 @@ class TrainingFragment : Fragment() {
     }
 
     fun stopTraining() {
+        // 防止重复执行
+        if (!isTraining || hasStopped) return
+        hasStopped = true
         isTraining = false
-        handler.removeCallbacks(timerTask)
-        handler.removeCallbacks(trainingTask)
+
+        // 立即停止所有 handler 回调
+        handler.removeCallbacksAndMessages(null)
 
         // 结束会话
         val finalStats = swingEngine.endSession()
         val totalShots = finalStats.totalSwings
+        val duration = ((System.currentTimeMillis() - startTime) / 1000).toInt()
 
-        // 传递给 MainViewModel
-        val viewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
-        viewModel.stopTraining(finalStats)
+        // 使用 activity 启动 ReportActivity，确保正确的返回栈
+        val activity = activity
+        if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
+            try {
+                val viewModel = ViewModelProvider(activity)[MainViewModel::class.java]
+                viewModel.stopTraining(finalStats)
 
-        Toast.makeText(requireContext(), "训练结束 - 总击球：$totalShots", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "训练结束 - 总击球：$totalShots", Toast.LENGTH_SHORT).show()
 
-        // 返回到 LiveFragment
-        parentFragmentManager.popBackStack()
+                // 跳转到训练报告页面
+                val intent = android.content.Intent(activity, com.smartform.tennis.ui.ReportActivity::class.java).apply {
+                    putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SESSION_ID, 1L)
+                    putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_TOTAL_SHOTS, totalShots)
+                    putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_MAX_SPEED, finalStats.maxSpeeds.values.maxOrNull() ?: 0f)
+                    putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_DURATION, duration)
+                    // 传递最多的击球类型
+                    val maxSwingEntry = finalStats.swingCounts.maxByOrNull { it.value }
+                    if (maxSwingEntry != null) {
+                        putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SWING_TYPE, maxSwingEntry.key.ordinal)
+                        putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SWING_COUNT, maxSwingEntry.value)
+                    } else {
+                        putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SWING_TYPE, SwingType.FOREHAND.ordinal)
+                        putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SWING_COUNT, 0)
+                    }
+                }
+                startActivity(intent)
+
+                // 延迟弹出 Fragment，确保 Activity 启动完成
+                handler.postDelayed({
+                    try {
+                        if (parentFragmentManager.backStackEntryCount > 0) {
+                            parentFragmentManager.popBackStackImmediate()
+                        }
+                    } catch (e: Exception) {
+                        // 忽略异常
+                    }
+                }, 100)
+            } catch (e: Exception) {
+                // 忽略异常，避免崩溃
+                try {
+                    if (parentFragmentManager.backStackEntryCount > 0) {
+                        parentFragmentManager.popBackStackImmediate()
+                    }
+                } catch (ex: Exception) {
+                    // 忽略异常
+                }
+            }
+        } else {
+            // activity 不可用，直接 pop 返回
+            try {
+                if (parentFragmentManager.backStackEntryCount > 0) {
+                    parentFragmentManager.popBackStackImmediate()
+                }
+            } catch (e: Exception) {
+                // 忽略异常
+            }
+        }
+
+        // 清除 context 引用
+        contextRef = null
     }
 
     /**
@@ -407,8 +471,14 @@ class TrainingFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        stopTraining()
+        // 确保停止训练（防止重复调用）
+        if (isTraining) {
+            isTraining = false
+            handler.removeCallbacksAndMessages(null)
+            swingEngine.endSession()
+        }
         swingEngine.reset()
+        contextRef = null
         timerText = null
         maxSpeedProgressBar = null
         maxSpeedValueText = null

@@ -49,18 +49,6 @@
             android:layout_marginStart="@dimen/margin_small"/>
 
         <TextView
-            android:id="@+id/tabSpeed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/ranking_tab_speed"
-            android:textSize="@dimen/text_normal"
-            android:textColor="@color/text_secondary"
-            android:gravity="center"
-            android:paddingVertical="@dimen/margin_small"
-            android:layout_marginStart="@dimen/margin_small"/>
-
-        <TextView
             android:id="@+id/tabTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -73,62 +61,91 @@
             android:layout_marginStart="@dimen/margin_small"/>
     </LinearLayout>
 
-    <!-- 本周球王 -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/corner_card"
-        app:cardBackgroundColor="@color/bg_card"
-        android:layout_marginHorizontal="@dimen/margin_normal"
-        android:layout_marginBottom="@dimen/margin_normal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_normal"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ranking_weekly_champion"
-                android:textSize="@dimen/text_caption"
-                android:textColor="@color/text_secondary"
-                android:layout_marginBottom="@dimen/margin_small"/>
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/ic_crown"
-                android:contentDescription="球王"
-                android:layout_marginBottom="@dimen/margin_small"/>
-
-            <TextView
-                android:id="@+id/championNickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="张三"
-                android:textSize="@dimen/text_title"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:layout_marginBottom="@dimen/margin_small"/>
-
-            <TextView
-                android:id="@+id/championStats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="总击球数：5,678 次"
-                android:textSize="@dimen/text_normal"
-                android:textColor="@color/text_secondary"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
     <!-- 排行榜列表 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rankingRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingHorizontal="@dimen/margin_normal"/>
+        android:paddingHorizontal="@dimen/margin_normal"
+        android:clipToPadding="false"/>
+
+    <!-- 我的排名（固定在底部，排名 > 10 时显示） -->
+    <LinearLayout
+        android:id="@+id/myRankFixedContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/text_secondary"
+            android:alpha="0.3"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_normal"
+            android:gravity="center_vertical"
+            android:background="#1A8BC34A">
+
+            <!-- 排名 -->
+            <TextView
+                android:id="@+id/myFixedRank"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="15"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/brand_primary"/>
+
+            <!-- 头像 -->
+            <TextView
+                android:id="@+id/myFixedAvatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="🧑"
+                android:textSize="20dp"
+                android:layout_marginStart="@dimen/margin_small"/>
+
+            <!-- 昵称 -->
+            <TextView
+                android:id="@+id/myFixedNickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:text="我"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"
+                android:textColor="@color/brand_primary"/>
+
+            <!-- 击球数 -->
+            <TextView
+                android:id="@+id/myFixedScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 次"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"
+                android:textColor="@color/brand_primary"/>
+
+            <!-- 差距提示 -->
+            <TextView
+                android:id="@+id/myFixedGapText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:text="距第3名还差 0 球"
+                android:textSize="@dimen/text_small"
+                android:textColor="@color/text_secondary"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

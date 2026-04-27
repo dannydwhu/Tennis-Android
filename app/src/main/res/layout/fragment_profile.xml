@@ -1,220 +1,374 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/bg_dark">
 
-    <LinearLayout
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_title"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:padding="@dimen/margin_normal"/>
+
+    <!-- 1. 顶部个人资料卡片 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_normal"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/bg_card">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_normal">
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_normal"
+            android:gravity="center_vertical">
 
-        <!-- 用户头像和昵称 -->
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingVertical="@dimen/margin_large">
-
-            <ImageView
-                    android:id="@+id/avatarImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/ic_default_avatar"
-                    android:contentDescription="用户头像"/>
-
+            <!-- 头像 -->
             <TextView
+                android:id="@+id/avatarText"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="🎾"
+                android:textSize="32dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:backgroundTint="@color/brand_primary_light"/>
+
+            <!-- 昵称和等级 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:gravity="center_vertical">
+
+                <TextView
                     android:id="@+id/nicknameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:text="未登录"
-                    android:textSize="@dimen/text_large"
+                    android:text="网球达人"
+                    android:textSize="@dimen/text_title"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"/>
 
-            <TextView
-                    android:id="@+id/userIdText"
+                <TextView
+                    android:id="@+id/levelText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:text="ID: --"
-                    android:textSize="@dimen/text_normal"
+                    android:layout_marginTop="4dp"
+                    android:text="Level 5"
+                    android:textSize="@dimen/text_small"
+                    android:textColor="@color/brand_primary"
+                    android:background="@drawable/bg_badge"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 2. 数据统计区域 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/bg_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 第一行：训练记录 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/margin_normal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="训练记录"
+                    android:textSize="@dimen/text_medium"
                     android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/trainingCountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="156次"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/margin_normal"
+                android:background="@color/text_hint"/>
+
+            <!-- 第二行：最好成绩 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/margin_normal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="最好成绩"
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/bestScoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="186 km/h"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/margin_normal"
+                android:background="@color/text_hint"/>
+
+            <!-- 第三行：累计天数 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/margin_normal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="累计天数"
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/text_secondary"/>
+
+                <TextView
+                    android:id="@+id/totalDaysText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="45天"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 3. 功能按钮区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:paddingHorizontal="@dimen/margin_normal">
+
+        <!-- 第一行：三个按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 设置 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/settingsCard"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_settings"
+                        android:tint="@color/text_secondary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="设置"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/text_secondary"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 数据同步 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/syncCard"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginHorizontal="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_sync"
+                        android:tint="@color/text_secondary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="数据同步"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/text_secondary"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 意见反馈 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/feedbackCard"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginStart="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_feedback"
+                        android:tint="@color/text_secondary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="意见反馈"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/text_secondary"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <!-- 成长系统卡片 -->
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/corner_card"
-                app:cardBackgroundColor="@color/bg_card"
-                android:layout_marginBottom="@dimen/margin_normal">
+        <!-- 第二行：两个按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_small">
 
-            <LinearLayout
+            <!-- 法律条款 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/legalCard"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/bg_card"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="@dimen/margin_normal">
+                    android:gravity="center">
 
-                <TextView
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_legal"
+                        android:tint="@color/text_secondary"/>
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/profile_user_info"
-                        android:textSize="@dimen/text_title"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginBottom="@dimen/margin_normal"/>
-
-                <!-- 等级和经验 -->
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                    <TextView
-                            android:id="@+id/levelText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lv.1"
-                            android:textSize="@dimen/text_medium"
-                            android:textStyle="bold"
-                            android:textColor="@color/brand_primary"/>
-
-                    <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"/>
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/profile_exp_progress"
-                            android:textSize="@dimen/text_normal"
-                            android:textColor="@color/text_secondary"/>
+                        android:layout_marginTop="8dp"
+                        android:text="法律条款"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/text_secondary"/>
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <!-- 经验进度条 -->
-                <ProgressBar
-                        android:id="@+id/expProgressBar"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:max="100"
-                        android:progress="20"
-                        android:progressDrawable="@drawable/bg_progress_bar"/>
-
-                <TextView
-                        android:id="@+id/expText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="距离下一级还需 80 经验"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_tertiary"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- 功能菜单 -->
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/corner_card"
+            <!-- 关于我们 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/aboutCard"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
                 app:cardBackgroundColor="@color/bg_card"
-                android:layout_marginBottom="@dimen/margin_normal">
+                android:layout_marginStart="8dp">
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <!-- 设备管理 -->
-                <LinearLayout
-                        android:id="@+id/deviceMenuItem"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/margin_normal"
-                        android:gravity="center_vertical"
-                        android:background="?attr/selectableItemBackground">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_bluetooth"
-                            android:contentDescription="设备管理"
-                            android:tint="@color/text_secondary"/>
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_info"
+                        android:tint="@color/text_secondary"/>
 
                     <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="@dimen/margin_normal"
-                            android:text="@string/profile_device_manage"
-                            android:textSize="@dimen/text_body"
-                            android:textColor="@color/text_primary"/>
-
-                    <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_arrow_right"
-                            android:contentDescription="更多"
-                            android:tint="@color/text_secondary"/>
-                </LinearLayout>
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/text_hint"/>
-
-                <!-- 设置 -->
-                <LinearLayout
-                        android:id="@+id/settingsMenuItem"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/margin_normal"
-                        android:gravity="center_vertical"
-                        android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_settings"
-                            android:contentDescription="设置"
-                            android:tint="@color/text_secondary"/>
-
-                    <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="@dimen/margin_normal"
-                            android:text="@string/profile_settings"
-                            android:textSize="@dimen/text_body"
-                            android:textColor="@color/text_primary"/>
-
-                    <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_arrow_right"
-                            android:contentDescription="更多"
-                            android:tint="@color/text_secondary"/>
+                        android:layout_marginTop="8dp"
+                        android:text="关于我们"
+                        android:textSize="@dimen/text_small"
+                        android:textColor="@color/text_secondary"/>
                 </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- 退出登录按钮 -->
-        <Button
-                android:id="@+id/logoutButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_height"
-                android:text="@string/profile_logout"
-                android:textSize="@dimen/text_medium"
-                android:background="@drawable/bg_button_danger"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

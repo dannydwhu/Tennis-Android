@@ -78,9 +78,9 @@
 
     <!-- RANKING 排行榜页 -->
     <string name="ranking_title">排行榜</string>
-    <string name="ranking_tab_shots">击球数榜</string>
-    <string name="ranking_tab_duration">时长榜</string>
-    <string name="ranking_tab_speed">速度榜</string>
+    <string name="ranking_tab_shots">周榜</string>
+    <string name="ranking_tab_duration">月榜</string>
+    <string name="ranking_tab_speed"></string>
     <string name="ranking_tab_total">总榜</string>
     <string name="ranking_rank">第%1$d名</string>
     <string name="ranking_my_rank">我的排名</string>
