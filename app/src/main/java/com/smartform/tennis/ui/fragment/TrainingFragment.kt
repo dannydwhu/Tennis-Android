@@ -12,11 +12,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.smartform.tennis.R
+import com.smartform.tennis.TennisApplication
 import com.smartform.tennis.algorithm.TennisSwingEngine
 import com.smartform.tennis.algorithm.model.SensorDataPoint
 import com.smartform.tennis.algorithm.model.SwingType
+import com.smartform.tennis.data.repository.TrainingRepository
 import com.smartform.tennis.ui.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 import java.util.Random
 
 /**
@@ -70,7 +74,11 @@ class TrainingFragment : Fragment() {
     // TennisSwingEngine
     private val swingEngine = TennisSwingEngine()
     private val handler = Handler(Looper.getMainLooper())
+    private val trainingRepository = TrainingRepository()
     private var contextRef: android.content.Context? = null
+
+    // 训练会话 ID（用于上传到后端）
+    private var sessionId: Long? = null
 
     // 模拟数据生成
     private var dataSequence = 0L
@@ -328,6 +336,7 @@ class TrainingFragment : Fragment() {
 
     fun startTraining() {
         isTraining = true
+        hasStopped = false
         startTime = System.currentTimeMillis()
         dataSequence = 0L
         lastLogUpdate = startTime
@@ -335,7 +344,17 @@ class TrainingFragment : Fragment() {
 
         // 重置引擎并重新开始
         swingEngine.reset()
-        swingEngine.startSession(System.currentTimeMillis(), 1L)
+        swingEngine.startSession(System.currentTimeMillis(), TennisApplication.userId)
+
+        // 在后端创建训练会话
+        lifecycleScope.launch {
+            val result = trainingRepository.startTraining(TennisApplication.userId)
+            result.onSuccess { session ->
+                sessionId = session.id
+            }.onFailure { e ->
+                // 失败时继续训练，不影响本地功能
+            }
+        }
 
         // 重置计数
         totalShotsText?.text = "0"
@@ -381,6 +400,33 @@ class TrainingFragment : Fragment() {
         val finalStats = swingEngine.endSession()
         val totalShots = finalStats.totalSwings
         val duration = ((System.currentTimeMillis() - startTime) / 1000).toInt()
+        val currentSessionId = sessionId
+
+        // 收集所有击球数据用于上传
+        val shotsToUpload = finalStats.swingCounts.flatMap { (type, count) ->
+            val maxSpeed = (finalStats.maxSpeeds[type] ?: 0f).toDouble()
+            List(count) { TrainingRepository.ShotData(type.name, maxSpeed) }
+        }
+
+        // 上传训练数据到后端
+        lifecycleScope.launch {
+            try {
+                // 上传所有击球
+                if (currentSessionId != null && shotsToUpload.isNotEmpty()) {
+                    trainingRepository.uploadTrainingData(
+                        sessionId = currentSessionId,
+                        userId = TennisApplication.userId,
+                        shots = shotsToUpload
+                    )
+                }
+                // 结束训练会话
+                if (currentSessionId != null) {
+                    trainingRepository.endTraining(currentSessionId)
+                }
+            } catch (e: Exception) {
+                // 上传失败不影响本地流程
+            }
+        }
 
         // 使用 activity 启动 ReportActivity，确保正确的返回栈
         val activity = activity
@@ -393,7 +439,7 @@ class TrainingFragment : Fragment() {
 
                 // 跳转到训练报告页面
                 val intent = android.content.Intent(activity, com.smartform.tennis.ui.ReportActivity::class.java).apply {
-                    putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SESSION_ID, 1L)
+                    putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_SESSION_ID, currentSessionId ?: 1L)
                     putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_TOTAL_SHOTS, totalShots)
                     putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_MAX_SPEED, finalStats.maxSpeeds.values.maxOrNull() ?: 0f)
                     putExtra(com.smartform.tennis.ui.ReportActivity.EXTRA_DURATION, duration)

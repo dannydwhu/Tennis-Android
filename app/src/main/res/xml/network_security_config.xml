@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Debug: trust all certificates -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="user"/>
+            <certificates src="system"/>
+        </trust-anchors>
+    </debug-overrides>
+
+    <!-- Production: trust specific IP with server certificate -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain>192.168.3.42</domain>
+        <domain>192.168.3.40</domain>
+        <trust-anchors>
+            <certificates src="@raw/server_cert"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

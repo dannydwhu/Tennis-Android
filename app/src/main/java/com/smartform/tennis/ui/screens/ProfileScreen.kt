@@ -50,19 +50,17 @@ private val TextHelper = Color(0x66FFFFFF)
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
+    nickname: String = "网球达人",
+    level: String = "Level 1",
+    trainingCount: Int = 0,
+    bestSpeed: Double = 0.0,
+    totalDays: Int = 0,
     onSettingsClick: () -> Unit = {},
     onSyncClick: () -> Unit = {},
     onFeedbackClick: () -> Unit = {},
     onLegalClick: () -> Unit = {},
     onAboutClick: () -> Unit = {}
 ) {
-    // Mock user data
-    var nickname by remember { mutableStateOf("网球达人") }
-    var level by remember { mutableStateOf("Level 5") }
-    var trainingCount by remember { mutableStateOf(156) }
-    var bestScore by remember { mutableStateOf("186 km/h") }
-    var totalDays by remember { mutableStateOf(45) }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -102,7 +100,7 @@ fun ProfileScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 StatsCard(
                     trainingCount = trainingCount,
-                    bestScore = bestScore,
+                    bestSpeed = bestSpeed,
                     totalDays = totalDays
                 )
             }
@@ -232,7 +230,7 @@ private fun ProfileCard(
 @Composable
 private fun StatsCard(
     trainingCount: Int,
-    bestScore: String,
+    bestSpeed: Double,
     totalDays: Int
 ) {
     Surface(
@@ -255,7 +253,7 @@ private fun StatsCard(
             // Row 2: Best Score
             StatRow(
                 label = "最好成绩",
-                value = bestScore,
+                value = "${String.format("%.1f", bestSpeed)} km/h",
                 showDivider = true
             )
 

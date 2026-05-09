@@ -1,11 +1,13 @@
 package com.smartform.tennis.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.smartform.tennis.R
+import com.smartform.tennis.TennisApplication
 import com.smartform.tennis.ui.fragment.DataFragment
 import com.smartform.tennis.ui.fragment.LeaderboardFragment
 import com.smartform.tennis.ui.fragment.LiveFragment
@@ -25,6 +27,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate 开始")
         super.onCreate(savedInstanceState)
+
+        // Check if user is logged in, if not redirect to LoginActivity
+        if (!TennisApplication.isLoggedIn) {
+            Log.d(TAG, "User not logged in, redirecting to LoginActivity")
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
 
         try {
             setContentView(R.layout.activity_main)

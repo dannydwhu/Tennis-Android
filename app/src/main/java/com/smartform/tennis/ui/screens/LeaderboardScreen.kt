@@ -54,68 +54,14 @@ private val BronzeColor = Color(0xFFCD7F32)
 @Composable
 fun LeaderboardScreen(
     modifier: Modifier = Modifier,
-    onTabSelected: (String) -> Unit = {}
+    isLoading: Boolean = false,
+    top10: List<RankItemUi> = emptyList(),
+    currentUser: RankItemUi? = null,
+    thirdPlaceScore: Int = 0,
+    selectedTab: Int = 0,
+    tabs: List<String> = listOf("周榜", "月榜", "总榜"),
+    onTabSelected: (Int) -> Unit = {}
 ) {
-    var selectedTab by remember { mutableIntStateOf(0) }
-    val tabs = listOf("周榜", "月榜", "总榜")
-
-    // Mock data - changes based on tab
-    var top10 by remember { mutableStateOf(emptyList<RankItemUi>()) }
-    var currentUser by remember { mutableStateOf<RankItemUi?>(null) }
-    var thirdPlaceScore by remember { mutableIntStateOf(0) }
-
-    // Load mock data based on selected tab
-    when (selectedTab) {
-        0 -> { // Week
-            top10 = listOf(
-                RankItemUi(1, "疯狂小白菜", 1400, "🥇"),
-                RankItemUi(2, "挥拍不止", 1200, "🥈"),
-                RankItemUi(3, "ACE10363", 1200, "🥉"),
-                RankItemUi(4, "ACE_masan", 1100, ""),
-                RankItemUi(5, "Faye Dong", 1100, ""),
-                RankItemUi(6, "ACE97630", 1100, ""),
-                RankItemUi(7, "ACE13757", 1000, ""),
-                RankItemUi(8, "刚学网球", 1000, ""),
-                RankItemUi(9, "网豆子", 943, ""),
-                RankItemUi(10, "ACE97657", 909, "")
-            )
-            currentUser = RankItemUi(15, "我", 650, "🧑")
-            thirdPlaceScore = 1200
-        }
-        1 -> { // Month
-            top10 = listOf(
-                RankItemUi(1, "网球迷", 5800, "🥇"),
-                RankItemUi(2, "tennis_pro", 5200, "🥈"),
-                RankItemUi(3, "球王李", 4800, "🥉"),
-                RankItemUi(4, " AceQueen", 4500, ""),
-                RankItemUi(5, "网球达人", 4200, ""),
-                RankItemUi(6, "正手杀手", 3800, ""),
-                RankItemUi(7, "反手大师", 3500, ""),
-                RankItemUi(8, "削球高手", 3200, ""),
-                RankItemUi(9, "发球机器", 3000, ""),
-                RankItemUi(10, "截击王", 2800, "")
-            )
-            currentUser = RankItemUi(8, "我", 2100, "🧑")
-            thirdPlaceScore = 4800
-        }
-        2 -> { // Total
-            top10 = listOf(
-                RankItemUi(1, "传奇球星", 25000, "🥇"),
-                RankItemUi(2, "网球教练", 22000, "🥈"),
-                RankItemUi(3, "运动达人", 20000, "🥉"),
-                RankItemUi(4, "全勤王", 18000, ""),
-                RankItemUi(5, "热爱网球", 16000, ""),
-                RankItemUi(6, "小球童", 15000, ""),
-                RankItemUi(7, "周末球手", 14000, ""),
-                RankItemUi(8, "业余高手", 12000, ""),
-                RankItemUi(9, "网球新人", 10000, ""),
-                RankItemUi(10, "初学者", 8000, "")
-            )
-            currentUser = RankItemUi(3, "我", 20000, "🧑")
-            thirdPlaceScore = 20000
-        }
-    }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -152,11 +98,24 @@ fun LeaderboardScreen(
             TabSelector(
                 tabs = tabs,
                 selectedTab = selectedTab,
-                onTabSelected = {
-                    selectedTab = it
-                    onTabSelected(tabs[it])
-                }
+                onTabSelected = onTabSelected
             )
+
+            // Loading indicator
+            if (isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(32.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "加载中...",
+                        color = TextSecondary,
+                        fontSize = 14.sp
+                    )
+                }
+            }
         }
 
         // Content
@@ -184,7 +143,6 @@ fun LeaderboardScreen(
             }
         } else {
             // User outside Top 10 - show Top 10 + fixed bottom rank
-            val user = currentUser
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -442,9 +400,32 @@ private fun MyRankFixedBar(
 
 // ==================== Data Model ====================
 
-private data class RankItemUi(
+data class RankItemUi(
     val rank: Int,
     val name: String,
     val score: Int,
     val avatar: String = ""
+)
+
+/**
+ * Leaderboard entry data class for API integration
+ */
+data class LeaderboardEntryUi(
+    val userId: Long,
+    val nickname: String?,
+    val totalShots: Int,
+    val level: Int?,
+    val rank: Int
+)
+
+/**
+ * My rank data class for API integration
+ */
+data class MyRankUi(
+    val userId: Long,
+    val nickname: String?,
+    val totalShots: Int,
+    val totalShotsRank: Long,
+    val maxSpeed: Double,
+    val maxSpeedRank: Long
 )

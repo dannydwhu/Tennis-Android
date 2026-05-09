@@ -13,8 +13,9 @@ data class User(
     @SerializedName("heightCm") val heightCm: Int?,
     @SerializedName("weightKg") val weightKg: Double?,
     @SerializedName("tennisLevel") val tennisLevel: TennisLevel?,
-    @SerializedName("currentLevel") val currentLevel: Int,
-    @SerializedName("experiencePoints") val experiencePoints: Long
+    @SerializedName("currentLevel") val currentLevel: Int?,
+    @SerializedName("experiencePoints") val experiencePoints: Long?,
+    @SerializedName("nextLevelExp") val nextLevelExp: Long?
 ) {
     enum class TennisLevel {
         BEGINNER,     // 新手
